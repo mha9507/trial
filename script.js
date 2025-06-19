@@ -1,4 +1,4 @@
-// Advanced Cursor System
+/ Advanced Cursor System
 class AdvancedCursor {
   constructor() {
     this.cursor = document.querySelector('.cursor-main');
@@ -1533,4 +1533,5 @@ window.addEventListener('resize', () => {
     window.app.scene.renderer.setSize(window.innerWidth, window.innerHeight);
   }
 });
+
 
