@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teleportation Glasses - Interactive 3D Experience</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+
+
+
+<!-- Loading Screen -->
+<div class="loading-screen" id="loadingScreen">
+  <div class="loading-content">
+    <div class="portal-loader">
+      <div class="portal-ring outer"></div>
+      <div class="portal-ring middle"></div>
+      <div class="portal-ring inner"></div>
+      <div class="portal-core"></div>
+      <div class="progress-arc"></div>
+    </div>
+    <div class="loading-text">ENGAGING TELEPORTATION</div>
+    <div class="percentage">0%</div>
+  </div>
+</div>
+
+<!-- Advanced Cursor System -->
+<div class="cursor-system">
+  <div class="cursor-main"></div>
+  <div class="cursor-glow"></div>
+</div>
+
+<!-- Main App Container -->
+<div class="app-container">
+  <!-- 3D Scene -->
+  <canvas id="three-scene"></canvas>
+  
+  <!-- Particles Overlay -->
+  <div class="particles-overlay" id="particlesOverlay"></div>
+
+  <!-- Video Room Overlay -->
+  <div class="video-room-overlay" id="videoRoomOverlay">
+    <div class="video-container">
+      <div class="video-header">
+        <div class="video-title">Purple Glasses Interactive Experience</div>
+        <button class="video-close" onclick="closeVideoRoom()">×</button>
+      </div>
+      <div class="video-iframe-container">
+        <iframe 
+          class="video-iframe"
+          src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+          title="Purple Glasses Interactive Experience"
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          allowfullscreen>
+        </iframe>
+        <div class="video-placeholder">
+          <div>Interactive Video Experience</div>
+          <small style="margin-top: 15px; font-size: 1rem; opacity: 0.7;">
+            Replace the YouTube URL in the iframe src to show your video
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- UI Overlay -->
+  <div class="ui-overlay">
+    <!-- Futuristic Navigation -->
+    <nav class="nav-system">
+      <div class="nav-item active" data-scene="room">Room</div>
+      <div class="nav-item" data-scene="video">Experience</div>
+      <div class="nav-item" data-scene="team">Team</div>
+      <div class="nav-item" data-scene="behind">BTS</div>
+    </nav>
+
+<!-- Content Sections -->
+<!-- Video Experience Section -->
+<div class="content-section" id="section-video">
+  <div class="section-content">
+    <button class="section-close" onclick="closeSection()">×</button>
+    <h1 class="section-title">Glasses On</h1>
+    
+    <!-- Intro Video Section -->
+    <div id="intro-section" class="video-section active-video-section">
+      <div class="experience-video-container">
+        <div class="experience-video-frame">
+          <iframe 
+            id="intro-video"
+            class="experience-video-iframe"
+            src="https://www.youtube.com/embed/uiK0oMhOsNQ?enablejsapi=1&autoplay=1&rel=0&modestbranding=1"
+            title="Purple Glasses Intro"
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
+          </iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- Decision 1: Where to go? -->
+    <div id="decision1-section" class="decision-point">
+      <h2>Where should I go?</h2>
+      <p>The teleportation worked, but now you need to choose your destination.</p>
+      <div class="decision-buttons">
+        <button id="dorm-choice">Back to Dorm Room</button>
+        <button id="bathroom-choice">Bathroom</button>
+      </div>
+    </div>
+
+    <!-- Dorm Branch -->
+    <div id="dorm-section" class="video-section">
+      <div class="experience-video-container">
+        <div class="experience-video-frame">
+          <iframe 
+            id="dorm-video"
+            class="experience-video-iframe"
+            src="https://www.youtube.com/embed/q2sNJy1IPho?enablejsapi=1&rel=0&modestbranding=1"
+            title="Dorm Room Branch"
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
+          </iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bathroom Branch -->
+    <div id="bathroom-section" class="video-section">
+      <div class="experience-video-container">
+        <div class="experience-video-frame">
+          <iframe 
+            id="bathroom-video"
+            class="experience-video-iframe"
+            src="https://www.youtube.com/embed/24zlsvHUNK0?enablejsapi=1&rel=0&modestbranding=1"
+            title="Bathroom Branch"
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
+          </iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- Final Return -->
+    <div id="final-return-section" class="video-section">
+      <div class="experience-video-container">
+        <div class="experience-video-frame">
+          <iframe 
+            id="final-return-video"
+            class="experience-video-iframe"
+            src="https://www.youtube.com/embed/RJw7-FGcs6E?enablejsapi=1&rel=0&modestbranding=1"
+            title="Final Return"
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
+          </iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- Decision 2: What now? -->
+    <div id="decision2-section" class="decision-point">
+      <h2>What now?</h2>
+      <p>The laptop screen says: "Welcome back. Choose wisely."</p>
+      <div class="decision-buttons">
+        <button id="use-glasses">Use glasses again</button>
+        <button id="destroy-glasses">Destroy the glasses</button>
+      </div>
+    </div>
+
+    <!-- Ending Use -->
+    <div id="ending-use-section" class="video-section">
+      <div class="experience-video-container">
+        <div class="experience-video-frame">
+          <iframe 
+            id="ending-use-video"
+            class="experience-video-iframe"
+            src="https://www.youtube.com/embed/TDq1Mt0Y_k0?enablejsapi=1&rel=0&modestbranding=1"
+            title="Ending - Use Glasses"
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
+          </iframe>
+        </div>
+      </div>
+      <div class="ending-section">
+        <button class="restart-button" id="restart-btn1">Restart Experience</button>
+      </div>
+    </div>
+
+    <!-- Ending Destroy -->
+    <div id="ending-destroy-section" class="video-section">
+      <div class="experience-video-container">
+        <div class="experience-video-frame">
+          <iframe 
+            id="ending-destroy-video"
+            class="experience-video-iframe"
+            src="https://www.youtube.com/embed/oCyEZFsMiS0?enablejsapi=1&rel=0&modestbranding=1"
+            title="Ending - Destroy Glasses"
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
+          </iframe>
+        </div>
+      </div>
+      <div class="ending-section">
+        <button class="restart-button" id="restart-btn2">Restart Experience</button>
+      </div>
+    </div>
+
+      <p class="section-description" style="margin-top: 20px;">
+        Wear the glasses and unlock teleportation — each view leads to a new reality.
+      </p>
+    </div>
+  </div>
+
+  <!-- Team Section -->
+  <div class="content-section" id="section-team">
+    <div class="section-content">
+      <button class="section-close" onclick="closeSection()">×</button>
+      <h1 class="section-title">Meet the Visionaries</h1>
+      <p class="section-description">
+        The creative minds who transformed a simple concept into an immersive experience. 
+        Each brought their unique perspective to craft something extraordinary.
+      </p>
+      
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar">M</div>
+          <div class="team-name">Meera Alzaabi</div>
+          <div class="team-role">Creative Director & Visionary</div>
+          <div class="team-bio">
+            The driving force behind the project's concept and digital world, Meera brought the website to life and crafted the teleportation journeys—transforming the glasses into a portal of immersive storytelling.          </div>
+        </div>
+        
+        <div class="team-card">
+          <div class="team-avatar">A</div>
+          <div class="team-name">Ahmad Hijazi</div>
+          <div class="team-role">Project Leader & Director</div>
+          <div class="team-bio">
+            Ahmad led the project's direction, shaped the narrative structure, and directed every scene—ensuring the glasses experience was cohesive, dynamic, and deeply engaging.
+          </div>
+        </div>
+        
+        <div class="team-card">
+          <div class="team-avatar">A</div>
+          <div class="team-name">Abdelrahman Khater</div>
+          <div class="team-role">Performance & Visual Effects Director</div>
+          <div class="team-bio">
+            Abdelrahman brought characters to life and infused every scene with emotional depth, visual flair, and polished effects—turning each path into a vivid cinematic experience.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+
+  <!-- Teleportation Lenses Hub Title -->
+<div class="lenses-hub-title">Teleport Through Sight</div>
+
+<!-- Instruction Box -->
+<div class="instruction-box">
+  <h3>Explore the Teleportation Glasses</h3>
+  <p>Explore with your mouse. Click the lenses, then tap Experience to Teleport.</p>
+</div>
+
+<!-- Behind the Scenes Section -->
+<div class="content-section" id="section-behind">
+  <div class="section-content">
+    <button class="section-close" onclick="closeSection()">×</button>
+    <h1 class="section-title">Behind the Magic</h1>
+
+    <!-- just replace scr with ur youtube link -->
+    <div class="experience-video-container">
+      <div class="experience-video-frame">
+        <iframe 
+          id="bts-video"
+          class="experience-video-iframe"
+          src="https://www.youtube.com/embed/zcE5jhf9lSA?si=z32h_UyDPaZ3-kX1"
+          title="Behind the Scenes"
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+
+        <!-- Fallback placeholder (only shows if video fails to load) -->
+        <div class="experience-video-placeholder" style="display: none;">
+          <div>Your Behind the Scenes Video Here</div>
+          <small style="margin-top: 15px; font-size: 1rem; opacity: 0.7;">
+            Replace the YouTube URL in the iframe src above with your actual BTS video
+          </small>
+        </div>
+      </div>
+
+      <p class="section-description">
+        A peek into how the teleportation magic was made — from concept to execution.
+      </p>
+    </div>
+  </div>
+</div>
+
+    <!-- Audio Visualizer -->
+    <div class="audio-visualizer" id="audioVisualizer">
+      <!-- Bars will be generated by JS -->
+    </div>
+
+    <!-- Environment Changer Button -->
+    <div class="environment-changer">
+      <button class="env-button" id="envChanger" title="Change Environment">
+        <span class="env-icon">🌌</span>
+        <span class="env-text">Space</span>
+      </button>
+    </div>
+
+<!-- Three.js -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+ <script src="script.js"></script>
+
+</body>
+</html>
